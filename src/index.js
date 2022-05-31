@@ -1,5 +1,5 @@
 import './css/styles.css';
-import NewsApiService from './fetchingData';
+import NewsApiService from './fetchData';
 import Notiflix from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import throttle from 'lodash.throttle';
@@ -25,8 +25,8 @@ function onFormSubmit(e) {
     newsApiService.resetpage();
     newsApiService.query = e.currentTarget.elements.searchQuery.value;
 
-    if (bottomMessage) {
-        bottomMessage.remove();
+    if (bottomMessageRef) {
+        bottomMessageRef.remove();
     };
 
     if (newsApiService.query.trim() === "") {
@@ -70,5 +70,5 @@ function addBottomMessage() {
     bottomMessageRef = document.createElement("p");
     bottomMessageRef.textContent = "We're sorry, but you've reached the end of search results.";
     bottomMessageRef.classList.add('bottomMessage');
-    galleryRef.after(bottomMessage);
+    galleryRef.after(bottomMessageRef);
 };
